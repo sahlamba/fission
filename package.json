@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/thedrumsknight/fission/issues"
   },
-  "homepage": "https://github.com/thedrumsknight/fission#readme"
+  "homepage": "https://github.com/thedrumsknight/fission#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^1.1.1"
+  }
 }

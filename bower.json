@@ -1,0 +1,21 @@
+{
+  "name": "fission",
+  "description": "Migration Framework to port Spring MVC + JSP apps to AngularJS",
+  "main": "main.js",
+  "authors": [
+    "Sahil Lamba"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/thedrumsknight/fission",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4"
+  }
+}
