@@ -1,0 +1,20 @@
+{
+  "name": "fission",
+  "version": "1.0.0",
+  "description": "Migration Framework to port Spring MVC + JSP apps to AngularJS",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thedrumsknight/fission.git"
+  },
+  "author": "Sahil Lamba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thedrumsknight/fission/issues"
+  },
+  "homepage": "https://github.com/thedrumsknight/fission#readme"
+}
