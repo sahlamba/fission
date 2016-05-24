@@ -1,10 +1,19 @@
 'use strict';
 
 const electron = require('electron');
-// Module to control application life.
-const {app} = electron;
-// Module to create native browser window.
-const {BrowserWindow} = electron;
+// In-built modules
+const {app} = electron; // Module to control application life.
+const {BrowserWindow} = electron; // Module to create native browser window.
+const {ipcMain} = electron; // Module to interact with renderer processes
+
+// Live reloading on file changes
+require('electron-reload')(__dirname, {
+  electron: require('electron-prebuilt')
+});
+
+// External modules
+var fs = require('fs-extra'); // Module to interact with file system of OS
+var path = require('path');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -52,4 +61,14 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+ipcMain.on('create-project-dir', function () {
+  var dir = app.getPath('documents') + "/fission/webapp";
+
+  // Asynchronous
+  fs.mkdirp(dir, function (err) {
+    if (err) return mainWindow.webContents.send('console-message', err);
+    mainWindow.webContents.send('console-message', 'Directory created!');
+  });
 });

@@ -1,8 +1,12 @@
 'use strict';
 
-const fs = require('fs-extra');
+const {ipcRenderer} = require('electron'); // Module to interact with main process
 
-fs.mkdirs('/products/webapp/', function (err) {
-  if (err) return console.error(err);
-  console.log('dir created!');
+document.querySelector('#create-button')
+  .addEventListener('click', function () {
+    ipcRenderer.send('create-project-dir');
+  });
+
+ipcRenderer.on('console-message', function (event, msg) {
+  console.log(msg);
 });

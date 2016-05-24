@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/thedrumsknight/fission#readme",
   "devDependencies": {
-    "electron-prebuilt": "^1.1.1"
+    "electron-prebuilt": "^1.1.1",
+    "electron-reload": "^0.3.0"
   },
   "dependencies": {
     "fs-extra": "^0.30.0"
