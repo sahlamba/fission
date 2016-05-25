@@ -64,12 +64,12 @@ app.on('activate', function () {
 });
 
 // Native functions sent by renderer processes
-ipcMain.on('create-project-dir', function () {
-  var dir = app.getPath('documents') + "/fission/webapp";
+ipcMain.on('create-dir', function () {
+  var dir = path.resolve(app.getPath('documents'), "fission");
 
   // Asynchronous
   fs.mkdirp(dir, function (err) {
-    if (err) return mainWindow.webContents.send('console-message', err);
+    if (err) return mainWindow.webContents.send('console-message', err, true);
     mainWindow.webContents.send('console-message', 'Directory created!');
   });
 });

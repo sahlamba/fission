@@ -11,3 +11,13 @@ angular.module('fission', [
       $interpolateProvider.endSymbol('=}');
     }
   ]);
+
+const {ipcRenderer} = require('electron'); // Module to interact with main process
+
+// Channels to and from Main Process
+ipcRenderer.on('console-message', function (event, text, error) {
+  if (error) {
+    return console.error(text);
+  }
+  console.log(text);
+});
