@@ -63,6 +63,7 @@ app.on('activate', function () {
   }
 });
 
+// Native functions sent by renderer processes
 ipcMain.on('create-project-dir', function () {
   var dir = app.getPath('documents') + "/fission/webapp";
 

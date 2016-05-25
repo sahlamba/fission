@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="fission" ng-controller="MasterRod">
   <head>
+     <base href="" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+
     <title>Fission</title>
 
-    <link rel="stylesheet" href="./css/gsd/gsd.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="./css/app.css" media="screen" title="no title" charset="utf-8">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/gsd/gsd.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/app.css" media="screen" title="no title" charset="utf-8">
   </head>
-  <body>
-    <button type="button" id="create-button" class="btn btn-primary btn-fill btn-round">Create Project Directory</button>
-    <script type="text/javascript" src="./libs/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="./scripts/app.js"></script>
+  <body class="ng-cloak" ng-cloak>
+
+    <div ui-view></div>
+
+    <!-- Dependencies -->
+    <script type="text/javascript" src="libs/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="libs/angular/angular.min.js"></script>
+    <script type="text/javascript" src="libs/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <!-- App -->
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/components/app.master.js"></script>
+    <script type="text/javascript" src="scripts/components/app.home.js"></script>
   </body>
 </html>
