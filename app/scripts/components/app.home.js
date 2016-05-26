@@ -16,7 +16,15 @@ angular.module('fission.home', [])
   ]);
 
 angular.module('fission.home')
-  .controller('HomeRod', ['$scope',
-    function ($scope) {
+  .controller('HomeRod', ['$rootScope', '$scope',
+    function ($rootScope, $scope) {
+
+      $scope.getWebapp = function () {
+        ipcRenderer.send('get-all-webapp-files');
+      };
+
+      $scope.convertFile = function (name) {
+        convertJSPtoHTML(name);
+      };
     }
   ]);

@@ -14,6 +14,7 @@ require('electron-reload')(__dirname, {
 // External modules
 var fs = require('fs-extra'); // Module to interact with file system of OS
 var path = require('path');
+var utils = require('./main.utils.js');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -64,12 +65,8 @@ app.on('activate', function () {
 });
 
 // Native functions sent by renderer processes
-ipcMain.on('create-dir', function () {
-  var dir = path.resolve(app.getPath('documents'), "fission");
-
-  // Asynchronous
-  fs.mkdirp(dir, function (err) {
-    if (err) return mainWindow.webContents.send('console-message', err, true);
-    mainWindow.webContents.send('console-message', 'Directory created!');
-  });
+ipcMain.on('get-all-webapp-files', function (evt) {
+  var root = path.resolve(app.getPath('documents'), 'spring-petclinic/src/main/webapp');
+  var webapp = utils.makeDirObject(root);
+  mainWindow.webContents.send('get-webapp-object', webapp);
 });
