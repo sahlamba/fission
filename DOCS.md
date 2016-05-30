@@ -1,5 +1,5 @@
 # Main
-=============
+=======
 
 #### main.js
 1. ipcMain - 'get-all-webapp-files'
@@ -18,7 +18,7 @@
 ***
 
 # App
-=============
+======
 
 #### app.regex.js
 > Contains global **patterns** object which stores Regular Expressions to be
