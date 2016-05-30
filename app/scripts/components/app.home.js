@@ -24,7 +24,7 @@ angular.module('fission.home')
       };
 
       $scope.convertFile = function (name) {
-        convertJSPtoHTML(name);
+        $scope.file = convertJSPtoHTML(name);
       };
     }
   ]);

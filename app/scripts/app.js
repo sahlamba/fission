@@ -23,6 +23,6 @@ ipcRenderer.on('console-message', function (event, text, error) {
 });
 
 ipcRenderer.on('get-webapp-object', function (event, webapp) {
-  _spring = webapp;
+  _spring = webapp; // Global
   console.log(_spring);
 });
