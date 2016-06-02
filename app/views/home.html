@@ -1,13 +1,49 @@
-<button type="button"
-  class="btn btn-info btn-fill btn-round"
-  ng-click="getWebapp()">
-  Get Webapp
-</button>
-<button type="button"
-  class="btn btn-success btn-fill btn-round"
-  ng-click="convertFile('WEB-INF/jsp/welcome.jsp')">
-  Convert welcome.jsp to index.html
-</button>
-<pre>
-  {=file=}
-</pre>
+<div class="row" style="border-bottom: 1px dashed #ccc">
+  <div class="col-md-8" style="border-right: 1px dashed #ccc">
+    <div class="col-md-12" style="margin: 6px 0 3px 0">
+      <button type="button"
+        class="btn btn-info btn-round btn-fill btn-sm"
+        ng-click="getWebapp()">
+        Read webapp Directory
+      </button>
+      <button type="button"
+        class="btn btn-info btn-round btn-fill btn-sm"
+        ng-click="getJava()">
+        Read java Directory
+      </button>
+    </div>
+    <div class="col-md-12" style="margin: 3px 0">
+      <button type="button"
+        class="btn btn-primary btn-round btn-fill btn-sm"
+        ng-click="convertFile('WEB-INF/jsp/welcome.jsp')">
+        Convert welcome.jsp to index.html
+      </button>
+    </div>
+    <div class="col-md-12" style="margin: 3px 0 8px 0">
+      <button type="button"
+        class="btn btn-success btn-round btn-fill btn-sm">
+        Publish App!
+      </button>
+    </div>
+  </div>
+  <div class="col-md-4" style="margin: 5px 0">
+    <h6>Status</h6>
+    <p ng-class="task.type" ng-repeat="task in status.tasks">{=task.text=}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-6" style="margin: 10px 0">
+      <h5>Current File</h5>
+      <pre>
+        {=currentFile=}
+      </pre>
+    </div>
+    <div class="col-md-6" style="margin: 10px 0">
+      <h5>New File</h5>
+      <pre>
+        {=file=}
+      </pre>
+    </div>
+  </div>
+</div>

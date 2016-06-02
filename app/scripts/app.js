@@ -23,6 +23,11 @@ ipcRenderer.on('console-message', function (event, text, error) {
 });
 
 ipcRenderer.on('get-webapp-object', function (event, webapp) {
-  _spring = webapp; // Global
+  _spring['webapp'] = webapp; // Global
+  console.log(_spring);
+});
+
+ipcRenderer.on('get-java-dir-object', function (event, java_dir) {
+  _spring['java'] = java_dir; // Global
   console.log(_spring);
 });

@@ -23,8 +23,8 @@ var mainWindow = null;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600
+    width: 1280,
+    height: 720
   });
 
   // and load the index.html of the app.
@@ -69,4 +69,12 @@ ipcMain.on('get-all-webapp-files', function (evt) {
   var root = path.resolve(app.getPath('documents'), 'spring-petclinic/src/main/webapp');
   var webapp = utils.makeDirObject(root);
   mainWindow.webContents.send('get-webapp-object', webapp);
+  mainWindow.webContents.send('read-webapp-complete');
+});
+
+ipcMain.on('get-all-java-files', function (evt) {
+  var root = path.resolve(app.getPath('documents'), 'spring-petclinic/src/main/java');
+  var java_dir = utils.makeDirObject(root);
+  mainWindow.webContents.send('get-java-dir-object', java_dir);
+  mainWindow.webContents.send('read-java-complete');
 });

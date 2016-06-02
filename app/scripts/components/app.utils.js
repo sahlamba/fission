@@ -2,7 +2,7 @@
 
 var getFileDataFromObject = function (fileName) {
   var dirs = fileName.split('/'); // Get sub directories
-  var webapp = _spring; // Copy
+  var webapp = _spring['webapp']; // Copy
   dirs.forEach(function (dir, i) {
     if (i !== dirs.length - 1)
       webapp = webapp[dir]; // Move into sub-dir till last
@@ -18,7 +18,7 @@ var processJSPComments = function (file) {
 
 var processHTMLTag = function (file) {
   // Add ng-attributes to html tag
-  var htmlTag = file.match(patterns.html)[0]; // Only one will be present
+  var htmlTag = file.match(patterns.html) ? file.match(patterns.html)[0] : null ; // Only one will be present
   htmlTag = htmlTag.slice(0, htmlTag.length - 1); // Remove ending '>'
   htmlTag = htmlTag.concat(' class="no-js" ng-app="' + "spring-petclinic" + '" ng-controller="' + "welcome" + 'Controller">'); // Add App Name
   file = file.replace(patterns.html, htmlTag); // Replace in file
@@ -83,6 +83,11 @@ var _process_functions = {
 };
 
 // Global object of app, contains directory structure with file data
-var _spring = {};
+var _spring = {
+  'java': {},
+  'webapp': {}
+};
 // Global object of JS controllers, publish files accordingly at end
-var _controllers = {};
+var _controllers = {
+  '.template': ''
+};
