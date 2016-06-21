@@ -13,8 +13,5 @@ angular.module('fission.master')
 
       $scope.appInternalName = 'fission';
 
-      $rootScope.status = {
-        tasks: []
-      };
     }
   ]);
