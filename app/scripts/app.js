@@ -3,7 +3,7 @@
 angular.module('fission', [
     'ui.router',
     'fission.master',
-    'fission.home'
+    'fission.selectors'
   ])
   .config(['$interpolateProvider',
     function ($interpolateProvider) {

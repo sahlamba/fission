@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="page-header">
+    <h3>Add the following files</h3>
+  </div>
+  <div class="col-md-6">
+    <h5>pom.xml <small>Maven configuration file that contains list of project dependencies.</small></h5>
+    <button type="button"
+      class="btn btn-info btn-fill btn-xs"
+      ng-click="openFile('pom')">Select file&nbsp;&nbsp;<i class="fa fa-plus white"></i></button>
+  </div>
+  <div class="col-md-6">
+    <h5>dispatcher-servlet.xml <small>XML file that contains Dispatcher Servlet code.</small></h5>
+    <button type="button"
+      class="btn btn-info btn-fill btn-xs"
+      ng-click="openFile('servlet')">Select file&nbsp;&nbsp;<i class="fa fa-plus white"></i></button>
+  </div>
+  <div class="col-md-6 margin-top-20">
+    <h5>View Resolvers</h5>
+    <p>
+      Please comment out the code for any kind of View Resolvers configured in the application.
+    </p>
+  </div>
+  <div class="col-md-6 margin-top-20">
+    <h5>Base Package Name <small>The name of the root folder which contains all JAVA code.</small></h5>
+    <input type="text"
+      name="basePackageName"
+      placeholder="For example: com.migrationframework.app.sample"
+      class="form-control"
+      ng-model="application.basePackageName">
+  </div>
+</div>

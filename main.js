@@ -5,6 +5,7 @@ const electron = require('electron');
 const {app} = electron; // Module to control application life.
 const {BrowserWindow} = electron; // Module to create native browser window.
 const {ipcMain} = electron; // Module to interact with renderer processes
+const {dialog} = electron; // Module to add dialog support
 
 // Live reloading on file changes
 require('electron-reload')(__dirname, {
@@ -31,7 +32,7 @@ function createWindow() {
   mainWindow.loadURL('file://' + __dirname + '/app/index.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -69,12 +70,17 @@ ipcMain.on('get-all-webapp-files', function (evt) {
   var root = path.resolve(app.getPath('documents'), 'spring-petclinic/src/main/webapp');
   var webapp = utils.makeDirObject(root);
   mainWindow.webContents.send('get-webapp-object', webapp);
-  mainWindow.webContents.send('read-webapp-complete');
 });
 
 ipcMain.on('get-all-java-files', function (evt) {
   var root = path.resolve(app.getPath('documents'), 'spring-petclinic/src/main/java');
   var java_dir = utils.makeDirObject(root);
   mainWindow.webContents.send('get-java-dir-object', java_dir);
-  mainWindow.webContents.send('read-java-complete');
+});
+
+ipcMain.on('open-file-selector', function (evt, keyName) {
+  var filePath = dialog.showOpenDialog({properties: ['openFile']});
+  if (filePath) {
+    mainWindow.webContents.send('return-file', keyName, filePath[0]); // Returns absolute file path
+  }
 });
