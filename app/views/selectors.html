@@ -6,13 +6,19 @@
     <h5>pom.xml <small>Maven configuration file that contains list of project dependencies.</small></h5>
     <button type="button"
       class="btn btn-info btn-fill btn-xs"
+      ng-disabled="application.state.pom.fetching"
       ng-click="openFile('pom')">Select file&nbsp;&nbsp;<i class="fa fa-plus white"></i></button>
+      <small ng-bind="application.state.pom.text"></small>
+      <small ng-bind="application.names.pom"></small>
   </div>
   <div class="col-md-6">
     <h5>dispatcher-servlet.xml <small>XML file that contains Dispatcher Servlet code.</small></h5>
     <button type="button"
       class="btn btn-info btn-fill btn-xs"
+      ng-disabled="application.state.servlet.fetching"
       ng-click="openFile('servlet')">Select file&nbsp;&nbsp;<i class="fa fa-plus white"></i></button>
+      <small ng-bind="application.state.servlet.text"></small>
+      <small ng-bind="application.names.servlet"></small>
   </div>
   <div class="col-md-6 margin-top-20">
     <h5>View Resolvers</h5>
@@ -27,5 +33,11 @@
       placeholder="For example: com.migrationframework.app.sample"
       class="form-control"
       ng-model="application.basePackageName">
+  </div>
+  <div class="col-md-6 col-offset-6 margin-top-40 text-right">
+    <button type="button"
+      class="btn btn-success btn-fill"
+      ng-disabled="!application.valid.valid"
+      ng-click="goToState('convert')">Continue&nbsp;&nbsp;<i class="fa fa-arrow-right white"></i></button>
   </div>
 </div>

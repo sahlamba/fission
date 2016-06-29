@@ -21,8 +21,35 @@ angular.module('fission.selectors')
 
       $rootScope.application = {
         'basePackageName': '',
-        'pom': '',
-        'servlet': ''
+        'path': {
+          'pom': '',
+          'servlet': ''
+        },
+        'contents': {
+          'pom': '',
+          'servlet': ''
+        },
+        'state': {
+          'pom': {
+            'text': '',
+            'fetching': false,
+            'validating': false
+          },
+          'servlet': {
+            'text': '',
+            'fetching': false,
+            'validating': false
+          }
+        },
+        'names': {
+          'pom': '',
+          'servlet': ''
+        },
+        'valid': {
+          'valid': false,
+          'pom': false,
+          'servlet': false
+        }
       };
 
     }

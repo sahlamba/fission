@@ -82,5 +82,13 @@ ipcMain.on('open-file-selector', function (evt, keyName) {
   var filePath = dialog.showOpenDialog({properties: ['openFile']});
   if (filePath) {
     mainWindow.webContents.send('return-file', keyName, filePath[0]); // Returns absolute file path
+  } else {
+    mainWindow.webContents.send('cancel-file', keyName); // Cancel
   }
+});
+
+ipcMain.on('read-file', function (evt, keyName, filePath) {
+  var root = path.resolve(filePath);
+  var file = utils.makeDirObject(root);
+  mainWindow.webContents.send('return-file-contents', keyName, path.basename(filePath), file);
 });

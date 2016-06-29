@@ -26,11 +26,32 @@ angular.module('fission.master')
       };
 
       $rootScope.openFile = function (keyName) {
+        $rootScope.application['state'][keyName]['fetching'] = true;
+        $rootScope.application['state'][keyName]['text'] = 'Fetching...';
         ipcRenderer.send('open-file-selector', keyName);
-        ipcRenderer.on('return-file', function (evt, file, filePath) {
-          $rootScope.application[file] = filePath;
-        });
       };
+
+      ipcRenderer.on('return-file', function (evt, file, filePath) {
+        $rootScope.application['path'][file] = filePath;
+        $rootScope.application['state'][file]['text'] = 'Reading...';
+        $rootScope.$apply();
+        ipcRenderer.send('read-file', file, filePath);
+      });
+
+      ipcRenderer.on('cancel-file', function (evt, file) {
+        $rootScope.application['state'][file]['fetching'] = false;
+        $rootScope.application['state'][file]['text'] = '';
+        $rootScope.$apply();
+      });
+
+      ipcRenderer.on('return-file-contents', function (evt, file, fileName, fileContent) {
+        $rootScope.application['names'][file] = fileName;
+        $rootScope.application['contents'][file] = fileContent;
+        $rootScope.application['state'][file]['fetching'] = false;
+        $rootScope.application['state'][file]['text'] = '';
+        $rootScope.$apply();
+        console.log($rootScope.application);
+      });
 
       $scope.getWebapp = function () {
         ipcRenderer.send('get-all-webapp-files');
