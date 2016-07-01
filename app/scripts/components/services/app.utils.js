@@ -1,5 +1,10 @@
 // Utility functions and global objects required at front-end
 
+angular.module('fission.utils', [])
+  .factory('Utils', function () {
+    return {};
+  });
+
 var getFileDataFromObject = function (fileName) {
   var dirs = fileName.split('/'); // Get sub directories
   var webapp = _spring['webapp']; // Copy
@@ -75,11 +80,6 @@ var convertJSPtoHTML = function (file) {
   file = processTaglibDirective(file);
   file = processIncludeDirective(file);
   return file;
-};
-
-// Map functions to their names to pass as parameters
-var _process_functions = {
-  'convertJSPtoHTML': convertJSPtoHTML
 };
 
 // Global object of app, contains directory structure with file data

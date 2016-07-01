@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('fission', [
-    'ui.router',
-    'fission.master',
-    'fission.selectors'
+    'ui.router', // Angular routing support
+    'cb.x2js', // XML to JSON conversion module
+    'fission.utils', // Service
+    'fission.master', // Controller
+    'fission.selectors' // Controller
   ])
   .config(['$interpolateProvider',
     function ($interpolateProvider) {
