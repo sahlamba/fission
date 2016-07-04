@@ -23,6 +23,24 @@ var makeDirObject = function (rootDirname) {
   return objectRoot;
 };
 
+var createDir = function (dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath);
+  }
+};
+
+var writeFileToDir = function (fileName, fileContent, dirPath) {
+  createDir(dirPath);
+  var filePath = path.resolve(dirPath, fileName);
+  fs.writeFile(filePath, fileContent, function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
+};
+
 var exports = module.exports = {
-  makeDirObject: makeDirObject
+  makeDirObject: makeDirObject,
+  createDir: createDir,
+  writeFileToDir: writeFileToDir
 };

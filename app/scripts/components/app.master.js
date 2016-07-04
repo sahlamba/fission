@@ -21,6 +21,50 @@ angular.module('fission.master')
 
       $scope.appInternalName = 'fission';
 
+      // Support for POM, SERVLET, ROOT FOLDER, CONFIG FOLDER
+      $rootScope.application = {
+        'basePackageName': '',
+        'path': {
+          'pom': '',
+          'servlet': '',
+          'root': '',
+          'config': ''
+        },
+        'contents': {
+          'pom': '',
+          'servlet': ''
+        },
+        'state': {
+          'pom': {
+            'text': '',
+            'fetching': false,
+            'validating': false
+          },
+          'servlet': {
+            'text': '',
+            'fetching': false,
+            'validating': false
+          },
+          'root': {
+            'text': '',
+            'fetching': false,
+            'validating': false
+          }
+        },
+        'names': {
+          'pom': '',
+          'servlet': '',
+          'root': ''
+        },
+        'valid': {
+          'valid': false,
+          'pom': false,
+          'servlet': false,
+          'root': false,
+          'basePackageName': false
+        }
+      };
+
       $rootScope.goToState = function (stateName) {
         $state.go(stateName);
       };

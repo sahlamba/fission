@@ -87,8 +87,25 @@ ipcMain.on('open-file-selector', function (evt, keyName) {
   }
 });
 
+ipcMain.on('open-dir-selector', function (evt, keyName) {
+  var dirPath = dialog.showOpenDialog({properties: ['openDirectory']});
+  if (dirPath) {
+    mainWindow.webContents.send('return-dir', keyName, path.basename(dirPath[0]), dirPath[0]); // Returns absolute dir path
+  } else {
+    mainWindow.webContents.send('cancel-dir', keyName); // Cancel
+  }
+});
+
 ipcMain.on('read-file', function (evt, keyName, filePath) {
   var root = path.resolve(filePath);
   var file = utils.makeDirObject(root);
   mainWindow.webContents.send('return-file-contents', keyName, path.basename(filePath), file);
+});
+
+ipcMain.on('create-dir', function (evt, dir) {
+  utils.createDir(dir);
+});
+
+ipcMain.on('write-file', function (evt, fileName, fileContent, dirPath) {
+  utils.writeFileToDir(fileName, fileContent, path.resolve(dirPath));
 });

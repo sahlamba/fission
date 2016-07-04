@@ -5,7 +5,8 @@ angular.module('fission', [
     'cb.x2js', // XML to JSON conversion module
     'fission.utils', // Service
     'fission.master', // Controller
-    'fission.selectors' // Controller
+    'fission.selectors', // Controller
+    'fission.convert' // Controller
   ])
   .config(['$interpolateProvider',
     function ($interpolateProvider) {

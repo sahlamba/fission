@@ -19,40 +19,6 @@ angular.module('fission.selectors')
   .controller('SelectorRod', ['$rootScope', '$scope', 'x2js',
     function ($rootScope, $scope, x2js) {
 
-      $rootScope.application = {
-        'basePackageName': '',
-        'path': {
-          'pom': '',
-          'servlet': ''
-        },
-        'contents': {
-          'pom': '',
-          'servlet': ''
-        },
-        'state': {
-          'pom': {
-            'text': '',
-            'fetching': false,
-            'validating': false
-          },
-          'servlet': {
-            'text': '',
-            'fetching': false,
-            'validating': false
-          }
-        },
-        'names': {
-          'pom': '',
-          'servlet': ''
-        },
-        'valid': {
-          'valid': false,
-          'pom': false,
-          'servlet': false,
-          'basePackageName': false
-        }
-      };
-
       $rootScope.openFile = function (keyName) {
         // Update Status
         $rootScope.application.state[keyName].fetching = true;
@@ -60,6 +26,36 @@ angular.module('fission.selectors')
         // Open Dialog to Select File
         ipcRenderer.send('open-file-selector', keyName);
       };
+
+      $rootScope.openDir = function (keyName) {
+        // Update Status
+        $rootScope.application.state[keyName].fetching = true;
+        $rootScope.application.state[keyName].text = 'Fetching...';
+        // Open Dialog to Select Dir
+        ipcRenderer.send('open-dir-selector', keyName);
+      };
+
+      ipcRenderer.on('return-dir', function (evt, dir, dirName, dirPath) {
+        // Update Absolute Dir Path and Name
+        $rootScope.application.names[dir] = dirName;
+        $rootScope.application.path[dir] = dirPath;
+        $rootScope.application.contents[dir] = dirPath;
+        // Update Status
+        $rootScope.application.state[dir].text = '';
+        $rootScope.application.state[dir].fetching = false;
+        $scope.validateApp(dir);
+        // Update UI
+        $rootScope.$apply();
+      });
+
+      ipcRenderer.on('cancel-dir', function (evt, dir) {
+        // Update Status
+        $rootScope.application.state[dir].fetching = false;
+        $rootScope.application.state[dir].text = '';
+        $scope.validateApp(dir);
+        // Update UI
+        $rootScope.$apply();
+      });
 
       ipcRenderer.on('return-file', function (evt, file, filePath) {
         // Update Absolute File Path
@@ -107,7 +103,9 @@ angular.module('fission.selectors')
         } else {
           $rootScope.application.valid.basePackageName = false;
         }
-        $rootScope.application.valid.valid = ($rootScope.application.valid.pom &&
+        $rootScope.application.valid.valid = (
+          $rootScope.application.valid.root &&
+          $rootScope.application.valid.pom &&
           $rootScope.application.valid.servlet &&
           $rootScope.application.basePackageName);
       };
