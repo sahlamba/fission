@@ -92,10 +92,22 @@ angular.module('fission.selectors')
 
       $scope.validateApp = function (fileKey) { // application.contents.fileKey
         if (fileKey) {
-          if ($rootScope.application.contents[fileKey]) {
-            $rootScope.application.valid[fileKey] = true;
+          if (fileKey === 'viewr') {
+            if ($rootScope.application.viewFile) {
+              if ($rootScope.application.contents[fileKey]) {
+                $rootScope.application.valid[fileKey] = true;
+              } else {
+                $rootScope.application.valid[fileKey] = false;
+              }
+            } else {
+              $rootScope.application.valid[fileKey] = true;
+            }
           } else {
-            $rootScope.application.valid[fileKey] = false;
+            if ($rootScope.application.contents[fileKey]) {
+              $rootScope.application.valid[fileKey] = true;
+            } else {
+              $rootScope.application.valid[fileKey] = false;
+            }
           }
         }
         if ($rootScope.application.basePackageName) {
@@ -107,6 +119,7 @@ angular.module('fission.selectors')
           $rootScope.application.valid.root &&
           $rootScope.application.valid.pom &&
           $rootScope.application.valid.servlet &&
+          $rootScope.application.valid.viewr &&
           $rootScope.application.basePackageName);
       };
 

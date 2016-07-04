@@ -21,18 +21,20 @@ angular.module('fission.master')
 
       $scope.appInternalName = 'fission';
 
-      // Support for POM, SERVLET, ROOT FOLDER, CONFIG FOLDER
+      // Support for POM, SERVLET, ROOT FOLDER, CONFIG FOLDER, VIEW RESOLVERS FILE
       $rootScope.application = {
         'basePackageName': '',
         'path': {
           'pom': '',
           'servlet': '',
           'root': '',
-          'config': ''
+          'config': '',
+          'viewr': ''
         },
         'contents': {
           'pom': '',
-          'servlet': ''
+          'servlet': '',
+          'viewr': ''
         },
         'state': {
           'pom': {
@@ -49,18 +51,25 @@ angular.module('fission.master')
             'text': '',
             'fetching': false,
             'validating': false
+          },
+          'viewr': {
+            'text': '',
+            'fetching': false,
+            'validating': false
           }
         },
         'names': {
           'pom': '',
           'servlet': '',
-          'root': ''
+          'root': '',
+          'viewr': ''
         },
         'valid': {
           'valid': false,
           'pom': false,
           'servlet': false,
           'root': false,
+          'viewr': true,
           'basePackageName': false
         }
       };

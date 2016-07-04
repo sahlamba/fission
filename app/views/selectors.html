@@ -40,9 +40,23 @@
   </div>
   <div class="col-md-6 margin-top-20">
     <h5>View Resolvers</h5>
-    <p>
-      Please comment out the code for any kind of View Resolvers configured in the application.
-    </p>
+      <!-- Please comment out the code for any kind of View Resolvers configured in the application. -->
+      <p>
+        <input type="checkbox"
+          ng-model="application.viewFile"
+          ng-change="validateApp('viewr'); application.contents.viewr = null; application.names.viewr = ''">
+        <small>
+          &nbsp;Your view resolvers are written in a separate file and not in <strong>dispatcher-servlet.xml</strong>
+        </small>
+      </p>
+      <button
+        ng-if="application.viewFile"
+        type="button"
+        class="btn btn-info btn-fill btn-xs"
+        ng-disabled="application.state.viewr.fetching"
+        ng-click="openFile('viewr')">Select file&nbsp;&nbsp;<i class="fa fa-plus white"></i></button>
+        <small ng-bind="application.state.viewr.text"></small>
+        <small ng-bind="application.names.viewr"></small>
   </div>
   <div class="col-md-6 col-offset-6 margin-top-40 text-right">
     <button type="button"

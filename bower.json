@@ -16,15 +16,16 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^2.2.4",
     "angular": "^1.5.5",
     "angular-ui-router": "^0.3.0",
     "angular-sanitize": "^1.5.5",
     "bootstrap": "^3.3.6",
     "components-font-awesome": "^4.6.3",
-    "angular-x2js": "^0.2.0"
+    "angular-x2js": "^0.2.0",
+    "jquery": "^3.0.0"
   },
   "resolutions": {
-    "angular": "^1.5.5"
+    "angular": "^1.5.5",
+    "jquery": "1.9.1 - 2"
   }
 }
