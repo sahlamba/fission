@@ -84,7 +84,7 @@ angular.module('fission.selectors')
         if (x2js.xml_str2json(fileContent)) {
           $rootScope.application.contents[file] = x2js.xml_str2json(fileContent);
         } else {
-          // $rootScope.application.contents[file] = fileContent;
+          $rootScope.application.contents[file] = fileContent;
         }
         console.log($rootScope.application);
         // Update Status

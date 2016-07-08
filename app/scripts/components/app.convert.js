@@ -52,7 +52,7 @@ angular.module('fission.convert')
 
         // Servlet
         processServlet($rootScope.application.contents.servlet, $rootScope.application.basePackageName);
-        writeFile($rootScope.application.path.servlet, x2js.json2xml_str($rootScope.application.contents.pom));
+        writeFile($rootScope.application.path.servlet, x2js.json2xml_str($rootScope.application.contents.servlet));
         $scope.processConsole += 'New dispatcher servlet configured...\n';
 
         // JSP
