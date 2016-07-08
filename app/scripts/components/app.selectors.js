@@ -81,13 +81,26 @@ angular.module('fission.selectors')
         // Save Name of Actual file
         $rootScope.application.names[file] = fileName;
         // Save XML content as JSON
-        $rootScope.application.contents[file] = x2js.xml_str2json(fileContent);
+        if (x2js.xml_str2json(fileContent)) {
+          $rootScope.application.contents[file] = x2js.xml_str2json(fileContent);
+        } else {
+          // $rootScope.application.contents[file] = fileContent;
+        }
+        console.log($rootScope.application);
         // Update Status
         $rootScope.application.state[file].fetching = false;
         $rootScope.application.state[file].text = '';
         $scope.validateApp(file);
         // Update UI
         $rootScope.$apply();
+      });
+
+      $rootScope.$watch('application.contents.pom', function (newval, oldval) {
+        if (newval.project) {
+          $rootScope.application.basePackageName = newval.project.groupId + '.' + newval.project.name;
+        } else {
+          $rootScope.application.basePackageName = null;
+        }
       });
 
       $scope.validateApp = function (fileKey) { // application.contents.fileKey
@@ -120,7 +133,9 @@ angular.module('fission.selectors')
           $rootScope.application.valid.pom &&
           $rootScope.application.valid.servlet &&
           $rootScope.application.valid.viewr &&
-          $rootScope.application.basePackageName);
+          $rootScope.application.basePackageName &&
+          $rootScope.application.jstlPrefix &&
+          $rootScope.application.startJspName);
       };
 
     }

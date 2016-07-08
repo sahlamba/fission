@@ -23,6 +23,8 @@ angular.module('fission.master')
 
       // Support for POM, SERVLET, ROOT FOLDER, CONFIG FOLDER, VIEW RESOLVERS FILE
       $rootScope.application = {
+        'jstlPrefix': '',
+        'startJspName': '',
         'basePackageName': '',
         'path': {
           'pom': '',

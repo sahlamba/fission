@@ -30,15 +30,6 @@
       <small ng-bind="application.names.servlet"></small>
   </div>
   <div class="col-md-6 margin-top-20">
-    <h5>Base Package Name <small>The name of the root folder which contains all JAVA code.</small></h5>
-    <input type="text"
-      name="basePackageName"
-      placeholder="For example: com.migrationframework.app.sample"
-      class="form-control"
-      ng-change="validateApp()"
-      ng-model="application.basePackageName">
-  </div>
-  <div class="col-md-6 margin-top-20">
     <h5>View Resolvers</h5>
       <!-- Please comment out the code for any kind of View Resolvers configured in the application. -->
       <p>
@@ -57,6 +48,33 @@
         ng-click="openFile('viewr')">Select file&nbsp;&nbsp;<i class="fa fa-plus white"></i></button>
         <small ng-bind="application.state.viewr.text"></small>
         <small ng-bind="application.names.viewr"></small>
+  </div>
+  <div class="col-md-6 margin-top-20">
+    <h5>Base Package Name <small>The name of the root folder which contains all JAVA code.</small></h5>
+    <input type="text"
+      name="basePackageName"
+      placeholder="For example: com.migrationframework.app.sample"
+      class="form-control"
+      ng-change="validateApp()"
+      ng-model="application.basePackageName">
+  </div>
+  <div class="col-md-6 margin-top-20">
+    <h5>JSTL Prefix <small>The JSTL prefix for JSPs</small></h5>
+    <input type="text"
+      name="jstlPrefix"
+      placeholder="For example: /WEB-INF/jsp/"
+      class="form-control"
+      ng-change="validateApp()"
+      ng-model="application.jstlPrefix">
+  </div>
+  <div class="col-md-6 margin-top-20">
+    <h5>Index JSP <small>The name of the JSP at index url</small></h5>
+    <input type="text"
+      name="jstlPrefix"
+      placeholder="For example: welcome.jsp or index.jsp"
+      class="form-control"
+      ng-change="validateApp()"
+      ng-model="application.startJspName">
   </div>
   <div class="col-md-6 col-offset-6 margin-top-40 text-right">
     <button type="button"

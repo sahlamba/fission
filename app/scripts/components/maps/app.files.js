@@ -137,9 +137,9 @@ public class jspViewResolver implements ViewResolver {\n\
 	public View resolveViewName(String viewName, Locale locale) throws Exception {\n\
 		viewResolver.setOrder(0);\n\
 		if (viewName.compareTo("' + startJspName + '") == 0) {\n\
-			return new InternalResourceView(' + jstlPrefix + ' + "/' + startJspName + '.jsp");\n\
+			return new InternalResourceView("' + jstlPrefix.toString() + '/' + startJspName + '");\n\
 		} else {\n\
-			return new InternalResourceView(' + jstlPrefix + ' + "/jsonData.jsp");\n\
+			return new InternalResourceView("/jsonData.jsp");\n\
 		}\n\
 	}\n\
 }';
